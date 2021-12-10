@@ -27,13 +27,14 @@ bool SPFA(vector<vector<Edge> >& G, int n, int m, int s, vector<int>& dis)
         que.pop();
         vis[u] = false;
         for (Edge e : G[u]) {
-            if (dis[e.v] > dis[u] + e.w) {
-                dis[e.v] = dis[u] + e.w;
-                ++cnt[e.v];
-                if (cnt[e.v] >= n) return false;
-                if (!vis[e.v]) {
-                    que.push(e.v);
-                    vis[e.v] = true;
+            int v = e.v, w = e.w;
+            if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                ++cnt[v];
+                if (cnt[v] >= n) return false;
+                if (!vis[v]) {
+                    que.push(v);
+                    vis[v] = true;
                 }
             }
         }
